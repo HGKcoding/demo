@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>bounce</title>
+  <style>
+    body {
+      background: #000;
+    }
+    .loading-icon,
+    .loading-icon::before,
+    .loading-icon::after {
+      left: 50%;
+      top: 50%;
+      margin-left: -30px;
+      margin-top: -30px;
+      position: absolute;
+      vertical-align: middle;
+      background: #1bc2a6;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+    .loading-icon::before {
+      content: "";
+      animation: bounce 1.5s infinite;
+    }
+    .loading-icon::after {
+      content: "";
+      animation: bounce 1.5s -0.4s infinite;
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(2);
+        -webkit-transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes bounce {
+      0% {
+        transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(2);
+        -webkit-transform: scale(2);
+        opacity: 0;
+      }
+    }  
+  </style>
+</head>
+<body>
+  <div class="loading-icon"></div> 
+</body>
+</html>

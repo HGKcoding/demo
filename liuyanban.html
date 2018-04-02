@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>留言板</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .message {
+      width: 300px;
+      min-height: 500px;
+      border: 1px solid #333;
+      padding: 10px;
+      background: #f6f6f6;
+      margin: 10px auto;
+      border-radius: 5px;
+    }
+    input {
+      height: 20px;
+      padding: 0 3px;
+    }
+    ul {
+      list-style: none;
+    }
+    li {
+      font-size: 16px;
+      height: 20px;
+      text-indent: 10px;
+      margin-top: 10px;
+      line-height: 20px;
+      font-weight: bold;
+      color: #666; 
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      var oUl = document.getElementById("list");
+      var oLi = oUl.getElementsByTagName("li");
+      var inp = document.getElementsByTagName("input");
+      
+      // 按回车键发送消息
+      inp[0].onkeyup = function (ev) {
+        var ev = ev || event;
+        if (this.value !== "") {
+          // 检测是否按下 Enter 键
+          if (ev.keyCode == 13) {
+            addInfo();
+          }
+        }
+      }
+      
+      // 按留言按钮发送消息
+      inp[1].onclick = addInfo;
+
+      // 删除
+      inp[2].onclick = function () {
+        for (var i = 0; i < oLi.length; i++) {
+          if (!oLi[i].onOff) {
+            oUl.removeChild(oLi[i]);
+            i--;
+          }
+        }
+      }
+
+      function addInfo() {
+        var li = document.createElement("li");
+
+        if (inp[0].value) {
+          li.innerHTML = inp[0].value;
+          li.onOff = true; // 设置标志位
+          if (oUl.children[0]) {
+            oUl.insertBefore(li, oUl.children[0]);
+          } else {
+            oUl.appendChild(li)
+          }
+        } else {
+          alert("请输入");
+        }
+
+        for (i in oUl.children) {  
+            // 鼠标移入颜色
+            oUl.children[i].onmouseover = function () {
+              this.style.background = "#999";
+              this.style.color = "#fff";
+            }
+
+            // 鼠标移开颜色消失
+            oUl.children[i].onmouseout = function () {
+              this.style.background = "";
+              this.style.color = "";
+            }
+            
+            // 选中要删除的对象
+            oUl.children[i].onclick = function () {
+              if (this.onOff) {
+                this.style.border = "2px solid blue";
+                oUl.children[i].onmouseout = function () {
+                  this.style.border = "2px solid blue";
+                } 
+              } else {
+                 this.style.border = "";
+                 this.style.color = "#fff";
+              }
+              this.onOff = !this.onOff;
+            }            
+        }
+        // 清空文本框信息
+        inp[0].value = "";
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="message">
+    <input type="text" placeholder="请输入">
+    <input type="button" value="留言">
+    <input type="button" value="删除">
+    <ul id="list"></ul>
+  </div>
+</body>
+</html>

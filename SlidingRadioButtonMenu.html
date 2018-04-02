@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>滑动单选按钮菜单</title>
+  <style>
+    html {
+      background: #ff6461;
+    }
+
+    body {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 214px;
+      width: 336px;
+      margin: -107px -168px;
+    }
+
+    input {
+      visibility: hidden;
+    }
+
+    label {
+      position: absolute;
+      left: 0;
+      right: 228px;
+      background: #fff;
+      cursor: pointer;
+      -webkit-transition: left .33s .33s, right .33s .33s, top .33s, bottom .33s;
+      transition: left .33s .33s, right .33s .33s, top .33s, bottom .33s;
+    }
+
+    #li0 + label {
+      top: 14px;
+      bottom: 164px;
+    }
+    #li1 + label {
+      top: 64px;
+      bottom: 114px;
+    }
+    #li2 + label {
+      top: 114px;
+      bottom: 64px;
+    }
+    #li3 + label {
+      top: 164px;
+      bottom: 14px;
+    }
+    :checked + label {
+      left: 122px;
+      right: 0;
+      top: 14px !important;
+      bottom: 14px !important;
+      -webkit-transition: left .33s .33s, right .33s .33s, top .33s 0.66s, bottom .33s .66s;
+      transition: left .33s .33s, right .33s .33s, top .33s .66s, bottom .33s .66s;
+    }
+  </style>
+</head>
+<body>
+  <input id="li0" name="foo" type="radio"/>
+  <label for="li0"></label>
+  <input checked="" id="li1" name="foo" type="radio"/>
+  <label for="li1"></label>
+  <input id="li2" name="foo" type="radio"/>
+  <label for="li2"></label>
+  <input id="li3" name="foo" type="radio"/>
+  <label for="li3"></label>
+  <input id="li4" name="foo" type="radio"/>
+  <label for="li4"></label>
+  <input id="li5" name="foo" type="radio">
+  <label for="li5"></label>
+</body>
+</html>
